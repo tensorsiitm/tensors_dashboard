@@ -1,11 +1,11 @@
 import React from 'react'
 
-function PrPage() {
+function JeePage() {
     return (
         <div>
-            PR Page
+            JEE Page
         </div>
     )
 }
 
-export default PrPage
+export default JeePage

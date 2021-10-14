@@ -1,11 +1,11 @@
 import React from 'react'
 
-function EduPage() {
+function DesignTeam() {
     return (
         <div>
-            Edu Page
+            Design Team
         </div>
     )
 }
 
-export default EduPage
+export default DesignTeam

@@ -3,8 +3,10 @@ import { Container, Row, Col } from "reactstrap";
 import SampleCard from "../../components/sampleCard/SampleCard";
 function HomePage() {
   return (
-    <>
-       <Container fluid >
+    <><Container>
+        <Row>
+          <Col md={9}>
+          <Container fluid >
          <Row >
            <Col md={6}>
              <SampleCard />
@@ -19,6 +21,15 @@ function HomePage() {
            </Col>
          </Row>
        </Container>
+
+          </Col>
+          <Col >
+            <SampleCard/>
+          </Col>
+        </Row>
+
+      </Container>
+      
     </>
   );
 }

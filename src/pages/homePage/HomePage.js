@@ -1,24 +1,11 @@
-import React from "react";
-import { Container, Row, Col } from "reactstrap";
-import SampleCard from "../../components/sampleCard/SampleCard";
+import React from 'react';
+import {Container, Row, Col} from 'reactstrap';
+import SampleCard from '../../components/sampleCard/SampleCard';
+import Transactions from '../../components/transactions/Transactions';
 function HomePage() {
   return (
     <>
-      <Container fluid>
-        <Row >
-          <Col md={6}>
-            <SampleCard />
-          </Col>
-          <Col md={6}>
-            <SampleCard />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <SampleCard />
-          </Col>
-        </Row>
-      </Container>
+      <Transactions />
     </>
   );
 }

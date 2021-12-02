@@ -1,11 +1,11 @@
-import React from 'react'
-
+import React from "react";
+import ScrumBoard from "../../components/scrumBoard/scrum_board/scrum_board";
 function WebOpsTeam() {
-    return (
-        <div>
-            Web Ops Team
-        </div>
-    )
+  return (
+    <div>
+      <ScrumBoard />
+    </div>
+  );
 }
 
-export default WebOpsTeam
+export default WebOpsTeam;

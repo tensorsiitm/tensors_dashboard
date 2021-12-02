@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { Container } from "reactstrap";
+import React, {Component} from 'react';
+import {Switch, Route, Redirect} from 'react-router-dom';
+import {Container} from 'reactstrap';
 
-import Sidebar from "../../components/sidebar/Sidebar";
-import Topbar from "../../components/topbar/Topbar";
-import DesignTeam from "../designTeam/DesignTeam";
-import EduTeam from "../eduTeam/EduTeam";
-import HomePage from "../homePage/HomePage";
-import JeePage from "../jeePage/JeePage";
-import PrTeam from "../prTeam/PrTeam";
-import WebOpsTeam from "../webOpsTeam/WebOpsTeam";
-import "./MainLayout.css";
+import Sidebar from '../../components/sidebar/Sidebar';
+import Topbar from '../../components/topbar/Topbar';
+import DesignTeam from '../designTeam/DesignTeam';
+import EduTeam from '../eduTeam/EduTeam';
+import HomePage from '../homePage/HomePage';
+import JeePage from '../jeePage/JeePage';
+import PrTeam from '../prTeam/PrTeam';
+import WebOpsTeam from '../webOpsTeam/WebOpsTeam';
+import './MainLayout.css';
 
 /*This forms the basic layout of the webapp where the sidebar
  and navbar is inserted and routes for other pages are defined*/
@@ -19,13 +19,13 @@ class MainLayout extends Component {
     super(props);
 
     this.state = {
-      sidebarIsOpen: true,
+      sidebarIsOpen: false,
     };
   }
 
- // function to display or remove sidebar from the screen
+  // function to display or remove sidebar from the screen
   toggleSidebar = () => {
-    this.setState({ sidebarIsOpen: !this.state.sidebarIsOpen });
+    this.setState({sidebarIsOpen: !this.state.sidebarIsOpen});
   };
 
   render() {
@@ -39,8 +39,7 @@ class MainLayout extends Component {
           />
           <Container
             fluid
-            className={`content ${this.state.sidebarIsOpen ? "is-open" : ""}`}
-          >
+            className={`content ${this.state.sidebarIsOpen ? 'is-open' : ''}`}>
             <Switch>
               <Route exact path="/home" component={() => <HomePage />} />
               <Route exact path="/pr" component={() => <PrTeam />} />

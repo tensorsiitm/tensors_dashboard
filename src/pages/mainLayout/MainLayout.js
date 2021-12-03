@@ -19,11 +19,11 @@ class MainLayout extends Component {
     super(props);
 
     this.state = {
-      sidebarIsOpen: true,
+      sidebarIsOpen: false,
     };
   }
 
- // function to display or remove sidebar from the screen
+  // function to display or remove sidebar from the screen
   toggleSidebar = () => {
     this.setState({ sidebarIsOpen: !this.state.sidebarIsOpen });
   };

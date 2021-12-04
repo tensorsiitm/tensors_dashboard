@@ -5,8 +5,6 @@ import {
   ModalBody,
   ModalHeader,
   Col,
-  Row,
-  FormFeedback,
   FormGroup,
   Form,
   Input,
@@ -21,9 +19,8 @@ class Modal_Form extends Component {
       task_name: "",
       assign: "THARUN.V",
       deadline: "",
-      public: false,
       description: "",
-      priority: "",
+      priority: "LOW",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,9 +34,8 @@ class Modal_Form extends Component {
       task_name: "",
       assign: "THARUN.V",
       deadline: "",
-      public: false,
       description: "",
-      priority: "",
+      priority: "LOW",
     });
   }
   handleChange(e) {
@@ -48,49 +44,6 @@ class Modal_Form extends Component {
   }
   handleDatePicker(date) {
     this.setState({ deadline: date });
-  }
-  handlePublic() {
-    let value = this.state.public ? (
-      <FormGroup row>
-        <Label htmlFor="assign" md={3}>
-          Assign To
-        </Label>
-        <Col md={9}>
-          <Input
-            type="select"
-            name="assign"
-            id="assign"
-            value={this.state.assign}
-            onChange={this.handleChange}
-          >
-            <option>THARUN.V</option>
-            <option>VISHNU</option>
-            <option>RISHAB</option>
-            <option>RAJESH</option>
-          </Input>
-        </Col>
-      </FormGroup>
-    ) : (
-      <FormGroup row>
-        <Label htmlFor="priority" md={3}>
-          Priority
-        </Label>
-        <Col md={9}>
-          <Input
-            type="select"
-            name="priority"
-            id="priority"
-            value={this.state.priority}
-            onChange={this.handleChange}
-          >
-            <option>LOW</option>
-            <option>MEDIUM</option>
-            <option>HIGH</option>
-          </Input>
-        </Col>
-      </FormGroup>
-    );
-    return value;
   }
   render() {
     return (
@@ -127,19 +80,44 @@ class Modal_Form extends Component {
                 />
               </Col>
             </FormGroup>
-            <FormGroup row check>
-              <Label md={{ offset: 3 }} check>
-                <Input
-                  type="checkbox"
-                  id="public"
-                  name="public"
-                  value={this.state.public}
-                  onChange={this.handleChange}
-                />{" "}
-                Public
+            <FormGroup row>
+              <Label htmlFor="assign" md={3}>
+                Assign To
               </Label>
+              <Col md={9}>
+                <Input
+                  type="select"
+                  name="assign"
+                  id="assign"
+                  value={this.state.assign}
+                  onChange={this.handleChange}
+                >
+                  <option>THARUN.V</option>
+                  <option>VISHNU</option>
+                  <option>RISHAB</option>
+                  <option>RAJESH</option>
+                </Input>
+              </Col>
             </FormGroup>
-            {this.handlePublic()}
+            <FormGroup row>
+              <Label htmlFor="priority" md={3}>
+                Priority
+              </Label>
+              <Col md={9}>
+                <Input
+                  type="select"
+                  name="priority"
+                  id="priority"
+                  value={this.state.priority}
+                  onChange={this.handleChange}
+                >
+                  <option>LOW</option>
+                  <option>MEDIUM</option>
+                  <option>HIGH</option>
+                </Input>
+              </Col>
+            </FormGroup>
+
             <FormGroup row>
               <Label htmlFor="description" md={3}>
                 Description

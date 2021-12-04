@@ -2,7 +2,6 @@ import initialData from "../components/scrumBoard/inital_data";
 export const Reducer = (state = initialData, action) => {
   switch (action.type) {
     case "ADD_TASK": {
-      console.log(state.columns[action.payload.columnId].taskIds);
       return {
         ...state,
         columns: {

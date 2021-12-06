@@ -1,0 +1,16 @@
+.navbarpr{
+    background: black;
+    width: 100%;
+}
+.drpd:hover{
+    background: rgb(170, 111, 0);
+}
+
+.rowh{
+    background: grey;
+}
+.hc{
+    text-align: center;
+    border: 2px solid black;
+    overflow: hidden;
+}

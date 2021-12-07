@@ -46,6 +46,12 @@ function Sidebar({ isOpen, toggle }) {
               JEE
             </NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to={"/signIn"}>
+              Sign In
+            </NavLink>
+          </NavItem>
+          
         </Nav>
       </div>
     </div>

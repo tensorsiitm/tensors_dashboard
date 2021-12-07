@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
+import { faAlignLeft, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, Button, NavbarBrand } from "reactstrap";
 import "./Topbar.css";
 import logo from "../../assets/logo.png";
@@ -23,6 +23,15 @@ function Topbar({ toggleSidebar }) {
       >
         <FontAwesomeIcon icon={faAlignLeft} />
       </Button>
+      <Button
+        color="info"
+        className="logOut"
+      >
+        <FontAwesomeIcon icon={faSignOutAlt} />
+        logout
+      </Button>
+
+      
     </Navbar>
   );
 }

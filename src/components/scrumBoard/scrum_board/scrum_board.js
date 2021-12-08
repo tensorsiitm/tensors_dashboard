@@ -10,7 +10,7 @@ import {
 import Column from "../board/Column";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolderPlus } from "@fortawesome/free-solid-svg-icons";
+import { faFolderPlus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./scrum_board.css";
 import { DragDropContext } from "react-beautiful-dnd";
 import {
@@ -23,6 +23,7 @@ import {
   Input,
   FormGroup,
   Button,
+  FormText,
 } from "reactstrap";
 const mapStateToProps = (state) => ({
   initialData: state,
@@ -146,13 +147,22 @@ class SrcumBoard extends Component {
   render() {
     return (
       <div className="div0">
-        <div className="container">
-          <h1 className="text-center bg-info text-white m-3 p-2">
-            Complete your task!
-            <button className="btn btn-info">
-              <FontAwesomeIcon icon={faFolderPlus} onClick={this.handleClick} />
-            </button>
-          </h1>
+        <div className="bg-success p-3">
+          <div className="container">
+            <div className="row">
+              <div className="col-10">
+                <h1 className="text-center text-white">Srcum Board</h1>
+              </div>
+              <div className="col-2 ">
+                <button
+                  className="btn btn-info"
+                  style={{ borderRadius: "50%" }}
+                >
+                  <FontAwesomeIcon icon={faPlus} onClick={this.handleClick} />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <DragDropContext onDragEnd={this.onDrag}>
           <div className="div1">
@@ -175,7 +185,12 @@ class SrcumBoard extends Component {
           </div>
         </DragDropContext>
         <Modal isOpen={this.state.isOpen}>
-          <ModalHeader toggle={this.handleClick}>Add a Stage !!!</ModalHeader>
+          <ModalHeader
+            className="bg-primary text-white"
+            toggle={this.handleClick}
+          >
+            Add a Stage !!!
+          </ModalHeader>
           <ModalBody>
             <Form onSubmit={this.handleSubmit}>
               <FormGroup row>
@@ -187,11 +202,20 @@ class SrcumBoard extends Component {
                     type="text"
                     value={this.state.stage}
                     onChange={this.handleChange}
+                    invalid={!this.state.stage}
+                    valid={this.state.stage}
                   />
                 </Col>
                 <Col xs={3}>
-                  {" "}
-                  <Button className="mt-1">Add!!</Button>
+                  <FormText>{!this.state.stage ? "Required" : ""}</FormText>
+                </Col>{" "}
+                <Col xs={3}>
+                  <Button
+                    disabled={!this.state.stage}
+                    className="mt-1 bg-danger"
+                  >
+                    Add!!
+                  </Button>
                 </Col>
               </FormGroup>
             </Form>

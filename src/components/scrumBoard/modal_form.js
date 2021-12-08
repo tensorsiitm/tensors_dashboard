@@ -5,15 +5,19 @@ import {
   ModalBody,
   ModalHeader,
   Col,
-  Row,
-  FormFeedback,
   FormGroup,
   Form,
   Input,
   Label,
   Button,
+  FormText,
 } from "reactstrap";
 import DatePicker from "react-datepicker";
+const err = {
+  task_name: "Required",
+  deadline: "Required",
+  description: "Required",
+};
 class Modal_Form extends Component {
   constructor(props) {
     super(props);
@@ -21,14 +25,19 @@ class Modal_Form extends Component {
       task_name: "",
       assign: "THARUN.V",
       deadline: "",
-      public: false,
       description: "",
-      priority: "",
+      priority: "LOW",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDatePicker = this.handleDatePicker.bind(this);
   }
+  handleError = (name, value) => {
+    if (value) {
+      return (err[name] = "");
+    }
+    return (err[name] = "Required");
+  };
   handleSubmit(e) {
     e.preventDefault();
     this.props.handleClick();
@@ -37,65 +46,29 @@ class Modal_Form extends Component {
       task_name: "",
       assign: "THARUN.V",
       deadline: "",
-      public: false,
       description: "",
-      priority: "",
+      priority: "LOW",
     });
+    err.task_name = "Required";
+    err.deadline = "Required";
+    err.description = "Required";
   }
   handleChange(e) {
-    let value = e.target.name == "public" ? e.target.checked : e.target.value;
-    this.setState({ [e.target.name]: value });
+    this.handleError(e.target.name, e.target.value);
+    this.setState({ [e.target.name]: e.target.value });
   }
   handleDatePicker(date) {
+    this.handleError("deadline", date);
     this.setState({ deadline: date });
   }
-  handlePublic() {
-    let value = this.state.public ? (
-      <FormGroup row>
-        <Label htmlFor="assign" md={3}>
-          Assign To
-        </Label>
-        <Col md={9}>
-          <Input
-            type="select"
-            name="assign"
-            id="assign"
-            value={this.state.assign}
-            onChange={this.handleChange}
-          >
-            <option>THARUN.V</option>
-            <option>VISHNU</option>
-            <option>RISHAB</option>
-            <option>RAJESH</option>
-          </Input>
-        </Col>
-      </FormGroup>
-    ) : (
-      <FormGroup row>
-        <Label htmlFor="priority" md={3}>
-          Priority
-        </Label>
-        <Col md={9}>
-          <Input
-            type="select"
-            name="priority"
-            id="priority"
-            value={this.state.priority}
-            onChange={this.handleChange}
-          >
-            <option>LOW</option>
-            <option>MEDIUM</option>
-            <option>HIGH</option>
-          </Input>
-        </Col>
-      </FormGroup>
-    );
-    return value;
-  }
   render() {
+    console.log(err);
     return (
       <Modal isOpen={this.props.isOpen}>
-        <ModalHeader toggle={this.props.handleClick}>
+        <ModalHeader
+          className="bg-success text-white"
+          toggle={this.props.handleClick}
+        >
           Submit Comment
         </ModalHeader>
         <ModalBody>
@@ -112,6 +85,8 @@ class Modal_Form extends Component {
                   placeholder="Enter The Task"
                   value={this.state.task_name}
                   onChange={this.handleChange}
+                  valid={err["task_name"] == ""}
+                  invalid={err["task_name"] == "Required"}
                 />
               </Col>
             </FormGroup>
@@ -125,21 +100,47 @@ class Modal_Form extends Component {
                   minDate={new Date()}
                   isClearable
                 />
+                <FormText>{err.deadline}</FormText>
               </Col>
             </FormGroup>
-            <FormGroup row check>
-              <Label md={{ offset: 3 }} check>
-                <Input
-                  type="checkbox"
-                  id="public"
-                  name="public"
-                  value={this.state.public}
-                  onChange={this.handleChange}
-                />{" "}
-                Public
+            <FormGroup row>
+              <Label htmlFor="assign" md={3}>
+                Assign To
               </Label>
+              <Col md={9}>
+                <Input
+                  type="select"
+                  name="assign"
+                  id="assign"
+                  value={this.state.assign}
+                  onChange={this.handleChange}
+                >
+                  <option>THARUN.V</option>
+                  <option>VISHNU</option>
+                  <option>RISHAB</option>
+                  <option>RAJESH</option>
+                </Input>
+              </Col>
             </FormGroup>
-            {this.handlePublic()}
+            <FormGroup row>
+              <Label htmlFor="priority" md={3}>
+                Priority
+              </Label>
+              <Col md={9}>
+                <Input
+                  type="select"
+                  name="priority"
+                  id="priority"
+                  value={this.state.priority}
+                  onChange={this.handleChange}
+                >
+                  <option>LOW</option>
+                  <option>MEDIUM</option>
+                  <option>HIGH</option>
+                </Input>
+              </Col>
+            </FormGroup>
+
             <FormGroup row>
               <Label htmlFor="description" md={3}>
                 Description
@@ -153,10 +154,21 @@ class Modal_Form extends Component {
                   cols="12"
                   value={this.state.description}
                   onChange={this.handleChange}
+                  valid={err["description"] == ""}
+                  invalid={err["description"] == "Required"}
                 />
               </Col>
             </FormGroup>
-            <Button className="mt-1">Add!!</Button>
+            <Button
+              disabled={
+                err.task_name == "Required" ||
+                err.deadline == "Required" ||
+                err.description == "Required"
+              }
+              className="mt-1 btn text-white bg-danger"
+            >
+              Add!!
+            </Button>
           </Form>
         </ModalBody>
       </Modal>

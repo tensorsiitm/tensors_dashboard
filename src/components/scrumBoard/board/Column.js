@@ -1,19 +1,30 @@
 import React from "react";
 import { Component } from "react";
+import {
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Form,
+  FormGroup,
+  Col,
+  Button,
+} from "reactstrap";
 import Task from "../card/Task";
 import "./Column.css";
 import { Droppable } from "react-beautiful-dnd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolderPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Modal_Form from "../modal_form";
-import { Button } from "reactstrap";
 class Column extends Component {
   constructor(props) {
     super(props);
-    this.state = { isOpen: false };
+    this.state = { isOpen: false, isModalOpen: false };
   }
   handleClick = () => {
     this.setState({ isOpen: !this.state.isOpen });
+  };
+  handleModalClick = () => {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
   };
   handleState = (newTask) => {
     newTask.columnId = this.props.column.id;
@@ -23,23 +34,36 @@ class Column extends Component {
   render() {
     return (
       <>
-        <div className="container div2">
-          <h1 className="text-center bg-info text-white p-3">
-            {this.props.column.title}
-            <button className="btn btn-info">
-              <FontAwesomeIcon icon={faFolderPlus} onClick={this.handleClick} />
-            </button>
-            <Button
-              onClick={() => this.props.handleDeleteBoard(this.props.column.id)}
-            >
-              Delete
-            </Button>
-          </h1>
-
+        <div className="div2">
+          <div className="header_ bg-success">
+            <h4 className="text-center  text-white">
+              {this.props.column.title}
+            </h4>
+            <div className="row">
+              <div className="col-5 offset-1">
+                <button
+                  className="btn btn-info text-white"
+                  style={{ borderRadius: "50%" }}
+                >
+                  <FontAwesomeIcon icon={faPlus} onClick={this.handleClick} />
+                </button>
+              </div>
+              <div className="col-1 offset-3">
+                <button
+                  className="btn text-white btn-danger"
+                  style={{ borderRadius: "50%" }}
+                  onClick={this.handleModalClick}
+                >
+                  <FontAwesomeIcon icon={faTimes} />
+                </button>
+              </div>
+            </div>
+          </div>
           <Droppable droppableId={this.props.column.id} type="task">
             {(provided) => (
               <div
-                style={{ flexGrow: 1, minHeight: "100px" }}
+                style={{ backgroundColor: "transparent" }}
+                className="div3"
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
@@ -62,6 +86,35 @@ class Column extends Component {
           handleClick={this.handleClick}
           handleState={this.handleState}
         />
+        <Modal isOpen={this.state.isModalOpen}>
+          <ModalHeader
+            toggle={this.handleModalClick}
+            className="bg-warning text-white"
+          >
+            Warning
+          </ModalHeader>
+          <ModalBody>
+            <Form>
+              <FormGroup row>
+                <Col xs={9}>
+                  <div>Are You Sure You Want To Delete</div>
+                </Col>
+                <Col xs={3}>
+                  {" "}
+                  <Button
+                    onClick={() => {
+                      this.props.handleDeleteBoard(this.props.column.id);
+                      this.handleModalClick();
+                    }}
+                    className="mt-1 bg-danger"
+                  >
+                    Delete
+                  </Button>
+                </Col>
+              </FormGroup>
+            </Form>
+          </ModalBody>
+        </Modal>
       </>
     );
   }

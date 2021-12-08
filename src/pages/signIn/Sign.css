@@ -1,0 +1,135 @@
+
+.contain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f3feff;
+    position: relative;
+    overflow: hidden;
+   
+}
+.Row{
+    position: relative;
+    width: 70%;
+    min-height: 60vh;
+    background-color:white;
+   border-radius: 10px;
+   box-shadow: 1px 1px 5px #25A18e;
+   overflow: hidden;
+
+}
+.Row::after{
+    content: '';
+    background-color: #a9e0de;
+    height: 130%;
+    width: 90%;
+    position: absolute;
+    bottom: -70%;
+    right: -50%;
+    border-radius: 100%;
+    z-index: 1;
+}
+
+.Row::before{
+    content: '';
+    background-color: #25A18e;
+    height: 130%;
+    width: 90%;
+    position: absolute;
+    top: -70%;
+    right: -50%;
+    border-radius: 100%;
+    z-index: 2;
+}
+
+.form h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+    color: #25A18e;
+}
+.form form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .txtField{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.txtField input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.txtField label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: gray;
+    transform: translateY(-50%);
+    transition: 0.5s;
+    pointer-events: none;
+
+}
+.txtField span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #25A18e;
+    transition: 0.5s;
+}
+
+.txtField input:focus ~ label,
+.txtField input:valid ~ label{
+    top: -5px;
+    color:#25A18e;
+}
+.txtField input:focus ~ span::before,
+.txtField input:valid ~ span::before{
+    width: 100%;
+}
+
+  button[type="submit"]{
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #25A18e;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    margin-top: 20px;
+  }
+  button[type="submit"]:hover{
+    border-color: #25A18e;
+    transition: .5s;
+  }
+
+ .tensor{
+     color: white;
+     position: absolute;
+     top: 0;
+     right: 0;
+     z-index: 3;
+     padding: 25px 10%;
+     font-size: 10;
+     font-weight: 500;
+ }
+
+ .p{
+     margin-left: 10px;
+     color: grey;
+ }
+

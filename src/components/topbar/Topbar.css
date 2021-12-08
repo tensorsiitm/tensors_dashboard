@@ -5,3 +5,8 @@
 .img-fluid{
     height:20px
 }
+
+.logOut{
+    position: absolute;
+    right: 3vw;
+}

@@ -1,5 +1,5 @@
 import "./App.css";
-import MainLayout from "./pages/mainLayout/MainLayout";
+import FirstPage from './pages/firstpage/FirstPage';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ConfigStore } from "./redux/configStore";
@@ -10,11 +10,11 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <div className="App">
-          <MainLayout />
+          <FirstPage />
         </div>
       </BrowserRouter>
     </Provider>
   );
 }
 
-export default App;
+  export default App;

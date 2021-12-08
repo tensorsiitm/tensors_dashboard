@@ -43,7 +43,10 @@ class Task extends Component {
                 ref={provided.innerRef}
               >
                 <Card key={this.props.task.id} className="div5">
-                  <CardHeader className="bg-success text-white card_header">
+                  <CardHeader
+                    className="bg-success text-white card_header"
+                    style={{ borderRadius: "16px 16px 0px 0px" }}
+                  >
                     <div className="row">
                       <div className="col-7">{this.props.task.task_name}</div>
                       <div

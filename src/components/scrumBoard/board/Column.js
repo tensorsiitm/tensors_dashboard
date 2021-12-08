@@ -20,10 +20,6 @@ class Column extends Component {
     super(props);
     this.state = { isOpen: false, isModalOpen: false };
   }
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.handleModalClick();
-  };
   handleClick = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
@@ -98,7 +94,7 @@ class Column extends Component {
             Warning
           </ModalHeader>
           <ModalBody>
-            <Form onSubmit={() => this.handleSubmit()}>
+            <Form>
               <FormGroup row>
                 <Col xs={9}>
                   <div>Are You Sure You Want To Delete</div>
@@ -106,9 +102,10 @@ class Column extends Component {
                 <Col xs={3}>
                   {" "}
                   <Button
-                    onClick={() =>
-                      this.props.handleDeleteBoard(this.props.column.id)
-                    }
+                    onClick={() => {
+                      this.props.handleDeleteBoard(this.props.column.id);
+                      this.handleModalClick();
+                    }}
                     className="mt-1 bg-danger"
                   >
                     Delete

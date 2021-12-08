@@ -10,8 +10,14 @@ import {
   Input,
   Label,
   Button,
+  FormText,
 } from "reactstrap";
 import DatePicker from "react-datepicker";
+const err = {
+  task_name: "Required",
+  deadline: "Required",
+  description: "Required",
+};
 class Modal_Form extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +32,12 @@ class Modal_Form extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDatePicker = this.handleDatePicker.bind(this);
   }
+  handleError = (name, value) => {
+    if (value) {
+      return (err[name] = "");
+    }
+    return (err[name] = "Required");
+  };
   handleSubmit(e) {
     e.preventDefault();
     this.props.handleClick();
@@ -37,18 +49,26 @@ class Modal_Form extends Component {
       description: "",
       priority: "LOW",
     });
+    err.task_name = "Required";
+    err.deadline = "Required";
+    err.description = "Required";
   }
   handleChange(e) {
-    let value = e.target.name == "public" ? e.target.checked : e.target.value;
-    this.setState({ [e.target.name]: value });
+    this.handleError(e.target.name, e.target.value);
+    this.setState({ [e.target.name]: e.target.value });
   }
   handleDatePicker(date) {
+    this.handleError("deadline", date);
     this.setState({ deadline: date });
   }
   render() {
+    console.log(err);
     return (
       <Modal isOpen={this.props.isOpen}>
-        <ModalHeader toggle={this.props.handleClick}>
+        <ModalHeader
+          className="bg-success text-white"
+          toggle={this.props.handleClick}
+        >
           Submit Comment
         </ModalHeader>
         <ModalBody>
@@ -65,6 +85,8 @@ class Modal_Form extends Component {
                   placeholder="Enter The Task"
                   value={this.state.task_name}
                   onChange={this.handleChange}
+                  valid={err["task_name"] == ""}
+                  invalid={err["task_name"] == "Required"}
                 />
               </Col>
             </FormGroup>
@@ -78,6 +100,7 @@ class Modal_Form extends Component {
                   minDate={new Date()}
                   isClearable
                 />
+                <FormText>{err.deadline}</FormText>
               </Col>
             </FormGroup>
             <FormGroup row>
@@ -131,10 +154,21 @@ class Modal_Form extends Component {
                   cols="12"
                   value={this.state.description}
                   onChange={this.handleChange}
+                  valid={err["description"] == ""}
+                  invalid={err["description"] == "Required"}
                 />
               </Col>
             </FormGroup>
-            <Button className="mt-1">Add!!</Button>
+            <Button
+              disabled={
+                err.task_name == "Required" ||
+                err.deadline == "Required" ||
+                err.description == "Required"
+              }
+              className="mt-1 btn text-white bg-danger"
+            >
+              Add!!
+            </Button>
           </Form>
         </ModalBody>
       </Modal>

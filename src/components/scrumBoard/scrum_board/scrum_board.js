@@ -23,6 +23,7 @@ import {
   Input,
   FormGroup,
   Button,
+  FormText,
 } from "reactstrap";
 const mapStateToProps = (state) => ({
   initialData: state,
@@ -184,7 +185,12 @@ class SrcumBoard extends Component {
           </div>
         </DragDropContext>
         <Modal isOpen={this.state.isOpen}>
-          <ModalHeader toggle={this.handleClick}>Add a Stage !!!</ModalHeader>
+          <ModalHeader
+            className="bg-primary text-white"
+            toggle={this.handleClick}
+          >
+            Add a Stage !!!
+          </ModalHeader>
           <ModalBody>
             <Form onSubmit={this.handleSubmit}>
               <FormGroup row>
@@ -196,11 +202,20 @@ class SrcumBoard extends Component {
                     type="text"
                     value={this.state.stage}
                     onChange={this.handleChange}
+                    invalid={!this.state.stage}
+                    valid={this.state.stage}
                   />
                 </Col>
                 <Col xs={3}>
-                  {" "}
-                  <Button className="mt-1">Add!!</Button>
+                  <FormText>{!this.state.stage ? "Required" : ""}</FormText>
+                </Col>{" "}
+                <Col xs={3}>
+                  <Button
+                    disabled={!this.state.stage}
+                    className="mt-1 bg-danger"
+                  >
+                    Add!!
+                  </Button>
                 </Col>
               </FormGroup>
             </Form>

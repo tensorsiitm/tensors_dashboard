@@ -6,6 +6,7 @@ import "./Sidebar.css";
 
 function Sidebar({ isOpen, toggle }) {
   return (
+    
     <div className={classNames("sidebar", { "is-open": isOpen })}>
       <div className="sidebar-header">
         {/* Displays the 'X' mark for closing the sidebar in phone */}

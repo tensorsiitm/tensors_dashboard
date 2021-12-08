@@ -10,6 +10,7 @@ import HomePage from "../homePage/HomePage";
 import JeePage from "../jeePage/JeePage";
 import PrTeam from "../prTeam/PrTeam";
 import WebOpsTeam from "../webOpsTeam/WebOpsTeam";
+import SignIn from "../signIn/Sign";
 import "./MainLayout.css";
 
 /*This forms the basic layout of the webapp where the sidebar
@@ -42,13 +43,14 @@ class MainLayout extends Component {
             className={`content ${this.state.sidebarIsOpen ? "is-open" : ""}`}
           >
             <Switch>
-              <Route exact path="/home" component={() => <HomePage />} />
-              <Route exact path="/pr" component={() => <PrTeam />} />
-              <Route exact path="/edu" component={() => <EduTeam />} />
-              <Route exact path="/design" component={() => <DesignTeam />} />
-              <Route exact path="/webops" component={() => <WebOpsTeam />} />
-              <Route exact path="/jee" component={() => <JeePage />} />
-              <Redirect to="/home" />
+              <Route exact path="/dashboard/home" component={() => <HomePage />} />
+              <Route exact path="/dashboard/pr" component={() => <PrTeam />} />
+              <Route exact path="/dashboard/edu" component={() => <EduTeam />} />
+              <Route exact path="/dashboard/design" component={() => <DesignTeam />} />
+              <Route exact path="/dashboard/webops" component={() => <WebOpsTeam />} />
+              <Route exact path="/dashboard/jee" component={() => <JeePage />} />
+              <Route exact path="/dashboard/signIn" component={() => <SignIn />} />
+              <Redirect to="/dashboard/home" />
             </Switch>
           </Container>
         </div>

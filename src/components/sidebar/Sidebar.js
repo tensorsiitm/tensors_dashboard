@@ -18,35 +18,35 @@ function Sidebar({ isOpen, toggle }) {
       <div className="side-menu">
         <Nav vertical className="list-unstyled pb-3">
           <NavItem>
-            <NavLink tag={Link} to={"/home"}>
+            <NavLink tag={Link} to={"/dashboard/home"}>
               Home
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/pr"}>
+            <NavLink tag={Link} to={"/dashboard/pr"}>
               PR Team
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/edu"}>
+            <NavLink tag={Link} to={"/dashboard/edu"}>
               Edu Team
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/design"}>
+            <NavLink tag={Link} to={"/dashboard/design"}>
               Design Team
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/webops"}>
+            <NavLink tag={Link} to={"/dashboard/webops"}>
               WebOps Team
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={"/jee"}>
+            <NavLink tag={Link} to={"/dashboard/jee"}>
               JEE
             </NavLink>
-          </NavItem>
+          </NavItem>          
         </Nav>
       </div>
     </div>
